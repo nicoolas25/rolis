@@ -5,7 +5,7 @@ Rolis is a Redis-based role management system.
 ## Example
 
 ``` ruby
-Rolis.config do |c|
+Rolis.configure do |c|
   c.redis = Redis.new(url: ENV["REDIS_ROLIS_URL"])
 end
 
