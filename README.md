@@ -12,11 +12,10 @@ end
 class User < Struct.new(:id)
   include Rolis::Base
 
-  # Set the key to ID the model (default is :id)
-  # rolis_key :id
-
-  # Define the different roles for this model
-  rolis_roles %i(contributor moderator admin), default: nil
+  # Define the different roles for this model. Options are:
+  #   - default: default role if none are found
+  #   - key: Symbol of a method to call to get an unique id of the model
+  rolis_config %i(contributor moderator admin), default: nil, key: :id
 end
 
 current_user = User.new(37)
@@ -39,5 +38,6 @@ current_user.has_role?(:foo)
 
 ## Going further
 
+* Handle expiration when giving a role (this changes the way roles are stored and retrieved).
 * Use [nest](https://github.com/soveran/nest) to support namaspacing.
 * Add declarative rights through policies à la [access-granted](https://github.com/chaps-io/access-granted).
